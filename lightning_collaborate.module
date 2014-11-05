@@ -1,0 +1,61 @@
+<?php
+/**
+ * @file
+ * Code for the Lightning Collaborate feature.
+ */
+
+include_once 'lightning_collaborate.features.inc';
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function lightning_collaborate_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  // Add action link to 'node/add' on 'admin/content' page.
+  if ($root_path == 'admin/workbench/collaborate') {
+    $item = menu_get_item('task/add');
+    if ($item['access']) {
+      $data['actions']['output'][] = array(
+        '#theme' => 'menu_local_action',
+        '#link' => $item,
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function lightning_collaborate_block_info() {
+  $block = array('lightning_collaborate_statuses' => array());
+  $block['lightning_collaborate_statuses']['info'] = t('Share a status');
+  return $block;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function lightning_collaborate_block_view($delta) {
+    $block['subject'] = '';
+    $block['content'] = drupal_get_form('message_ui_instance_message_manage', 'status_update');
+    //$block['content'] = theme('statuses_form_display', array('recipient' => $GLOBALS['user'], 'type' => 'user'));
+    return $block;
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Remove unnecessary from fields from a status update form via Message UI module.
+ */
+function lightning_collaborate_form_alter(&$form, &$form_state, $form_id) {
+  if($form_id === 'message_ui_instance_message_manage' ) {
+    unset($form['text']);
+    unset($form['actions']['cancel']);
+    $form['owner']['#access'] = FALSE;
+    $form['actions']['submit']['#submit'][] = 'lightning_collaborate_message_redirect';
+  }
+}
+
+function lightning_collaborate_message_redirect(&$form, &$form_state) {
+  $form_state['redirect'] = 'admin/workbench/collaborate';
+}
+
