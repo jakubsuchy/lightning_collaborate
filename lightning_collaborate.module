@@ -60,15 +60,25 @@ function lightning_collaborate_message_redirect(&$form, &$form_state) {
 }
 
 /**
- * Implementats of hook_preprocess_views_view_table().
+ * Implements of hook_preprocess_views_view_table().
  *
- * This is done to convert the "type" field to a thumbnail for image files and
- * users that don't have a picture uploaded.
  *
  */
 function lightning_collaborate_preprocess_views_view_field(&$variables) {
   $view = $variables['view'];
 
+  // TODO: This can be removed when the following lands:
+  // https://www.drupal.org/node/2362767 - Even custom output buttons in Views
+  // should have links 
+  // Manually force custom task links to include an AJAX call to complete
+  if (($view->name == 'collaborate_tasks') && $variables['field']->definition['handler'] == 'task_handler_field_task_completed') {
+     ctools_include('ajax');
+     $variables['output'] =  $variables['row']->task_completed ? ctools_ajax_text_button(filter_xss_admin($variables['field']->options['type_custom_true']), "task/ajax/complete/nojs/" . $variables['row']->tid, t('Complete task')) : ctools_ajax_text_button(filter_xss_admin($variables['field']->options['type_custom_false']), "task/ajax/complete/nojs/" . $variables['row']->tid, t('Complete task'));
+  }
+
+
+  // This is done to convert the "type" field to a thumbnail for image files and
+  // users that don't have a picture uploaded.
   if (($view->name == 'editorial_notifications' || $view->name == 'collaborate_tasks') && $variables['field']->definition['handler'] == 'views_handler_field_user_picture') {
     if (empty($variables['output'])) {
       // We could put the default picture here
