@@ -120,7 +120,7 @@ function lightning_collaborate_default_task_type() {
   $items = array();
   $items['content'] = entity_import('task_type', '{
     "type" : "content",
-    "label" : "Content",
+    "label" : "Content task",
     "weight" : 0,
     "description" : "",
     "rdf_mapping" : []
