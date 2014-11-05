@@ -43,6 +43,14 @@ function lightning_collaborate_views_default_views() {
   $handler->display->display_options['relationships']['field_task_related_content_target_id']['id'] = 'field_task_related_content_target_id';
   $handler->display->display_options['relationships']['field_task_related_content_target_id']['table'] = 'field_data_field_task_related_content';
   $handler->display->display_options['relationships']['field_task_related_content_target_id']['field'] = 'field_task_related_content_target_id';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   /* Field: Task: Task ID */
   $handler->display->display_options['fields']['tid']['id'] = 'tid';
   $handler->display->display_options['fields']['tid']['table'] = 'task';
@@ -62,10 +70,8 @@ function lightning_collaborate_views_default_views() {
   $handler->display->display_options['fields']['changed']['table'] = 'task';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
   $handler->display->display_options['fields']['changed']['label'] = '';
-  $handler->display->display_options['fields']['changed']['alter']['text'] = '<div class="user-data">
-[picture]
-[changed]
-</div>';
+  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['changed']['alter']['text'] = '[name], [changed]';
   $handler->display->display_options['fields']['changed']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['changed']['date_format'] = 'time ago';
   $handler->display->display_options['fields']['changed']['second_date_format'] = 'long';
@@ -217,6 +223,14 @@ function lightning_collaborate_views_default_views() {
   $handler->display->display_options['relationships']['field_related_content_target_id']['id'] = 'field_related_content_target_id';
   $handler->display->display_options['relationships']['field_related_content_target_id']['table'] = 'field_data_field_related_content';
   $handler->display->display_options['relationships']['field_related_content_target_id']['field'] = 'field_related_content_target_id';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'user';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   /* Field: User: Picture */
   $handler->display->display_options['fields']['picture']['id'] = 'picture';
   $handler->display->display_options['fields']['picture']['table'] = 'users';
@@ -231,8 +245,8 @@ function lightning_collaborate_views_default_views() {
   $handler->display->display_options['fields']['timestamp']['table'] = 'message';
   $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['label'] = '';
-  $handler->display->display_options['fields']['timestamp']['alter']['text'] = '[picture]
-[timestamp]';
+  $handler->display->display_options['fields']['timestamp']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['timestamp']['alter']['text'] = '[name], [timestamp]';
   $handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['timestamp']['date_format'] = 'time ago';
   $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
