@@ -9,3 +9,5 @@ Requires:
 * Panels
 * Message & Message UI
 * Task
+
+![Lightning Collaborate Screenshot](jakubsuchy/lightning_collaborate/master/images/lightning_collaborate_screenshot.jpeg)
