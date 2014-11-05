@@ -62,7 +62,8 @@ function lightning_collaborate_message_redirect(&$form, &$form_state) {
 /**
  * Implementats of hook_preprocess_views_view_table().
  *
- * This is done to convert the "type" field to a thumbnail for image files.
+ * This is done to convert the "type" field to a thumbnail for image files and
+ * users that don't have a picture uploaded.
  *
  */
 function lightning_collaborate_preprocess_views_view_field(&$variables) {
@@ -71,12 +72,21 @@ function lightning_collaborate_preprocess_views_view_field(&$variables) {
   if (($view->name == 'editorial_notifications' || $view->name == 'collaborate_tasks') && $variables['field']->definition['handler'] == 'views_handler_field_user_picture') {
     if (empty($variables['output'])) {
       // We could put the default picture here
-      $variables['output'] = theme('image', array(
+      if (!empty($variables['row']->users_task_uid)) {
+        $uid = $variables['row']->users_task_uid;
+      } elseif (!empty($variables['row']->users_message_uid)) {
+        $uid = $variables['row']->users_message_uid;
+      } else {
+        $uid = 0;
+      }
+      $image_html = theme('image', array(
             'path' => drupal_get_path('module', 'workbench') . '/images/profile_default.png',
             'attributes' => array(
               'width' => '70px',
               ),
             ));
+
+      $variables['output'] = l($image_html, 'user/' . $uid, array('html' => TRUE));
     }
   }
 }
