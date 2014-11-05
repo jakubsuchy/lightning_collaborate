@@ -59,3 +59,37 @@ function lightning_collaborate_message_redirect(&$form, &$form_state) {
   $form_state['redirect'] = 'admin/workbench/collaborate';
 }
 
+/**
+ * Implementats of hook_preprocess_views_view_table().
+ *
+ * This is done to convert the "type" field to a thumbnail for image files.
+ *
+ */
+function lightning_collaborate_preprocess_views_view_field(&$variables) {
+  $view = $variables['view'];
+
+  if (($view->name == 'editorial_notifications' || $view->name == 'collaborate_tasks') && $variables['field']->definition['handler'] == 'views_handler_field_user_picture') {
+    if (empty($variables['output'])) {
+      // We could put the default picture here
+      $variables['output'] = theme('image', array(
+            'path' => drupal_get_path('module', 'workbench') . '/images/profile_default.png',
+            'attributes' => array(
+              'width' => '70px',
+              ),
+            ));
+    }
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ *
+ * Add required CSS styles to our page
+ */
+function lightning_collaborate_page_alter(&$page) {
+  if (current_path() == 'admin/workbench/collaborate') {
+    $page['content']['#attached'] = array(
+      'css' => array(drupal_get_path('module', 'lightning_collaborate') . '/css/lightning_collaborate.styles.css'),
+    );
+  }
+}

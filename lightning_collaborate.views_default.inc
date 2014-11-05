@@ -12,8 +12,8 @@ function lightning_collaborate_views_default_views() {
 
   $view = new view();
   $view->name = 'collaborate_tasks';
-  $view->description = 'Embedded views used on the user/*/tasks/* pages';
-  $view->tag = 'task';
+  $view->description = 'Embedded views used on the admin/workbench/collaborate pages';
+  $view->tag = 'lightning_collaborate';
   $view->base_table = 'task';
   $view->human_name = 'Collaborate tasks';
   $view->core = 7;
@@ -55,16 +55,13 @@ function lightning_collaborate_views_default_views() {
   $handler->display->display_options['fields']['picture']['table'] = 'users';
   $handler->display->display_options['fields']['picture']['field'] = 'picture';
   $handler->display->display_options['fields']['picture']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['picture']['label'] = 'Created by';
-  $handler->display->display_options['fields']['picture']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['picture']['label'] = '';
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['picture']['image_style'] = 'collaborate-user';
   /* Field: Task: Date changed */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'task';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
   $handler->display->display_options['fields']['changed']['label'] = '';
-  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['changed']['alter']['text'] = '<div class="user-data">
 [picture]
 [changed]
@@ -225,15 +222,15 @@ function lightning_collaborate_views_default_views() {
   $handler->display->display_options['fields']['picture']['table'] = 'users';
   $handler->display->display_options['fields']['picture']['field'] = 'picture';
   $handler->display->display_options['fields']['picture']['relationship'] = 'user';
-  $handler->display->display_options['fields']['picture']['label'] = 'Created by';
-  $handler->display->display_options['fields']['picture']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['picture']['image_style'] = 'collaborate-user';
+  $handler->display->display_options['fields']['picture']['label'] = '';
+  $handler->display->display_options['fields']['picture']['alter']['text'] = '[picture]
+[timestamp]';
+  $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
   /* Field: Message: Timestamp */
   $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['table'] = 'message';
   $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['label'] = '';
-  $handler->display->display_options['fields']['timestamp']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['timestamp']['alter']['text'] = '[picture]
 [timestamp]';
   $handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
@@ -323,16 +320,6 @@ function lightning_collaborate_views_default_views() {
     72540883 => 0,
     12364622 => 0,
   );
-
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page_1');
-  $handler->display->display_options['path'] = 'admin/workbench/message';
-  $handler->display->display_options['menu']['type'] = 'tab';
-  $handler->display->display_options['menu']['title'] = 'Notifications';
-  $handler->display->display_options['menu']['description'] = 'A list of all messages.';
-  $handler->display->display_options['menu']['weight'] = '0';
-  $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $export['editorial_notifications'] = $view;
 
   return $export;

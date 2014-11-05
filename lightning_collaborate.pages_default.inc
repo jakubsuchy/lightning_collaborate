@@ -52,29 +52,7 @@ function lightning_collaborate_default_page_manager_pages() {
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
     'css_id' => '',
-    'css' => '.view-collaborate-tasks .views-field-changed, .view-editorial-notifications .views-field-timestamp {
-    float: left;
-    width: 70px;
-    margin-right: 20px;
-    font-size: 0.8em;
-}
-
-.view-collaborate-tasks .views-row, .view-editorial-notifications .views-row {
-    margin-bottom: 30px;
-}
-
-.view-collaborate-tasks span.task-related, .view-editorial-notifications span.message-related {
-    display: block;
-    /* font-style: italic; */
-    font-size: 0.9em;
-    color: #777;
-}
-.view-editorial-notifications .views-exposed-form .views-exposed-widget {
-    display: block;
-}
-.view-editorial-notifications .views-exposed-form .views-exposed-widget input {
-    margin-top: 0;
-}',
+    'css' => '',
     'contexts' => array(),
     'relationships' => array(),
   );

@@ -1,0 +1,23 @@
+.view-collaborate-tasks .views-field-picture, .view-editorial-notifications .views-field-picture {
+  float: left;
+  margin-right: 20px;
+}
+.view-collaborate-tasks .views-field-changed, .view-editorial-notifications .views-field-timestamp {
+  font-size: 0.8em;
+}
+
+.view-collaborate-tasks .views-row, .view-editorial-notifications .views-row {
+  margin-bottom: 30px;
+}
+
+.view-collaborate-tasks span.task-related, .view-editorial-notifications span.message-related {
+  display: block;
+  font-size: 0.9em;
+  color: #777;
+}
+.view-editorial-notifications .views-exposed-form .views-exposed-widget {
+  display: block;
+}
+.view-editorial-notifications .views-exposed-form .views-exposed-widget input {
+  margin-top: 0;
+}
