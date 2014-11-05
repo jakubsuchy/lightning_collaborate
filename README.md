@@ -10,4 +10,5 @@ Requires:
 * Message & Message UI
 * Task
 
-![Lightning Collaborate Screenshot](jakubsuchy/lightning_collaborate/master/images/lightning_collaborate_screenshot.jpeg)
+![Lightning Collaborate Screenshot](https://cloud.githubusercontent.com/assets/234124/4926359/cd04020e-6532-11e4-9c31-b2dd1a9a645f.jpeg)
+
